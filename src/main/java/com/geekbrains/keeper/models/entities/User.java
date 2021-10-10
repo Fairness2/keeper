@@ -1,5 +1,6 @@
 package com.geekbrains.keeper.models.entities;
 
+import com.geekbrains.keeper.models.Note;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
