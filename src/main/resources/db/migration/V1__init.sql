@@ -58,3 +58,39 @@ INSERT INTO ref_user_role (`user_id`, `role_id`) VALUES
 (1, 1),
 (1, 2),
 (2, 1);
+
+create table tag
+(
+    id int auto_increment,
+    name varchar(255) null,
+    constraint tag_pk
+        primary key (id)
+);
+
+create table simple_note
+(
+    id int auto_increment,
+    description varchar(255) null,
+    title varchar(255) null,
+    user_id int null,
+    constraint simple_note_pk
+        primary key (id),
+    constraint simple_note_user_id_fk
+        foreign key (user_id) references user (id)
+            on update cascade on delete cascade
+);
+
+create table ref_simple_note_simple_tag
+(
+    id int auto_increment,
+    note_id int null,
+    tag_id int null,
+    constraint ref_simple_note_simple_tag_pk
+        primary key (id),
+    constraint ref_simple_note_simple_tag_simple_note_id_fk
+        foreign key (note_id) references simple_note (id)
+            on update cascade on delete cascade,
+    constraint ref_simple_note_simple_tag_tag_id_fk
+        foreign key (tag_id) references tag (id)
+            on update cascade on delete cascade
+);
