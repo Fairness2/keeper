@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/notes")
 public class NoteController {
@@ -17,5 +19,10 @@ public class NoteController {
     @PostMapping("/add")
     public Integer addNote(@RequestBody NoteDto note) {
         return noteService.createNote(note).getId();
+    }
+
+    @PostMapping("/meetings")
+    public List<NoteDto> addNote() {
+        return noteService.getMeetingsAsNote();
     }
 }

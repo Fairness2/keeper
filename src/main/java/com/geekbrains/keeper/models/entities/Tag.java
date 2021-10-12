@@ -9,7 +9,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "simple_tag")
+@Table(name = "tag")
 @NoArgsConstructor
 public class Tag {
     @Id
@@ -24,6 +24,12 @@ public class Tag {
             joinColumns = @JoinColumn(name = "tag_id"),
             inverseJoinColumns = @JoinColumn(name = "note_id"))
     private List<SimpleNote> notes;
+    @ManyToMany
+    @JoinTable(
+            name = "ref_simple_meeting_simple_tag",
+            joinColumns = @JoinColumn(name = "tag_id"),
+            inverseJoinColumns = @JoinColumn(name = "meeting_id"))
+    private List<Meeting> meetings;
 
     public Tag (TagDto dto) {
         this.id = dto.getId();
