@@ -1,5 +1,7 @@
 package com.geekbrains.keeper.models.entities;
 
+import com.geekbrains.keeper.models.Note;
+import com.geekbrains.keeper.models.dto.UserDto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -42,5 +44,11 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public User(UserDto dto) {
+        this.id = dto.getId();
+        this.username = dto.getUsername();
+        this.password = dto.getPassword();
     }
 }
